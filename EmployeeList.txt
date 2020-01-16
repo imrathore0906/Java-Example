@@ -1,0 +1,71 @@
+package javapractice;
+
+public class Employee {
+private int empCode;
+private String empName;
+private double salary;
+
+public Employee(){
+	
+}
+
+public Employee(int empCode,String empName,double salary){
+	this.empCode = empCode;
+	this.empName = empName;
+	this.salary = salary;
+}
+
+public int getEmpCode() {
+	return empCode;
+}
+
+public void setEmpCode(int empCode) {
+	this.empCode = empCode;
+}
+
+public String getEmpName() {
+	return empName;
+}
+
+public void setEmpName(String empName) {
+	this.empName = empName;
+}
+
+public double getSalary() {
+	return salary;
+}
+
+public void setSalary(int salary) {
+	this.salary = salary;
+}
+
+
+}
+-------------------------------------------------------------------------------------------------------
+package javapractice;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class EmployeeList {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int empCode = sc.nextInt();
+		String empName = sc.next();
+		double salary = sc.nextDouble();
+		int empCode2 = sc.nextInt();
+		String empName2 = sc.next();
+		double salary2 = sc.nextDouble();
+		
+		ArrayList<Employee> empList = new ArrayList<>();
+		empList.add(new Employee(1001,"Shravya",10000));
+		empList.add(new Employee(1002,"Shreyas",20000));
+		empList.add(new Employee(empCode,empName,salary)); //input from Scanner
+		empList.add(new Employee(empCode2,empName2,salary2));
+		for(Employee emp : empList)
+        	System.out.println(emp.getEmpCode()+" "+emp.getEmpName()+" "+emp.getSalary());
+	sc.close();
+	}
+
+}

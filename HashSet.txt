@@ -1,0 +1,18 @@
+package collections;
+
+import java.util.HashSet;
+
+public class HashSetExample {
+
+	public static void main(String[] args) {
+	HashSet items = new HashSet();
+	items.add(123);
+	items.add("Shravya");
+    items.add("Boorugu");
+	items.add(12);
+	items.add(null);
+	items.add("Deloitte");
+	System.out.println(items);
+	}
+
+}

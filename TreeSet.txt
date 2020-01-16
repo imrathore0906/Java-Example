@@ -1,0 +1,12 @@
+package collections;
+import java.util.TreeSet;
+public class TreeSet {
+
+	public static void main(String[] args) {
+		TreeSet<String> items = new TreeSet<>();
+		items.add("Shravya");
+		items.add("Boorugu");
+		System.out.println(items);
+	}
+
+}

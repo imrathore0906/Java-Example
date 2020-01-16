@@ -1,0 +1,30 @@
+package javapractice;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class SampleArrayList {
+       public static void main(String[] args){
+    	   ArrayList list = new ArrayList();
+    	   list.add(577);
+    	   list.add("Shravya");
+    	   list.add("Deloitte");
+    	   list.add(577);
+    	   list.add(3.14);
+    	   list.add(null);
+    	   System.out.println(list+" "+list.size());
+           list.add(2,"Boorugu");
+           System.out.println(list+" "+list.size());
+           list.remove(6); //default takes the given number as index to remove the object in arraylist
+           list.remove(new Integer(577)); //To remove integer have to create an object for Integer and specify the integer to be removed
+           System.out.println(list+" "+list.size());
+           Iterator itr = list.listIterator();
+           while(itr.hasNext()){
+        	   Object obj = itr.next();
+        	   if(obj instanceof Integer) //checks if it belongs to Integer class
+        	   System.out.println(obj);
+           }
+       }
+
+	
+}

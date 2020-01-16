@@ -1,0 +1,55 @@
+package javapractice;
+
+public interface Vehicle {
+void wheels();
+void engines();
+}
+-----------------------------------------------------------------------------------------
+package javapractice;
+
+public class Bus implements Vehicle{
+    int x = 6;
+    int y = 1;
+	
+	public static void main(String[] args) {
+		Vehicle bus = new Bus();
+		bus.wheels();
+		bus.engines();
+	}
+
+	@Override
+	public void wheels() {
+		System.out.println("A bus has"+" "+x+" "+"wheels");
+	}
+
+	@Override
+	public void engines() {
+		System.out.println("A bus has"+" "+y+" "+"engine(s)");		
+	}
+
+}
+---------------------------------------------------------------------------------------------------------
+package javapractice;
+
+public class Airplane implements Vehicle{
+	 int a = 3;
+	 int b = 4;
+		
+		public static void main(String[] args) {
+			Vehicle airplane = new Airplane();
+			airplane.wheels();
+		    airplane.engines();
+		}
+
+		@Override
+		public void wheels() {
+			System.out.println("An airplane has"+" "+a+" "+"wheels");
+		}
+
+		@Override
+		public void engines() {
+			System.out.println("An airplane has"+" "+b+" "+"engine(s)");		
+		}
+
+	
+}

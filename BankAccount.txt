@@ -1,0 +1,174 @@
+package javapractice;
+
+import java.util.Scanner;
+
+public class AccountApplication extends AccountOperations{
+      
+    public static void main(String[] args){
+    	 AccountOperations oper = new AccountOperations();
+    	 Scanner sc = new Scanner(System.in);
+    	
+    	 while(true){
+    		 System.out.println("Enter your choice d = deposit, w = withdraw, c = check balance, x = exit");
+        	 String option = sc.next();
+    		 switch(option){
+    		 	case "d" : System.out.println("Enter accno and amount to deposit");
+    		 				oper.deposit(sc.nextInt(),sc.nextDouble());
+    		 				break;
+    		 	case "w" : System.out.println("Enter accno and amount to withdraw");
+    		 				oper.withdraw(sc.nextInt(),sc.nextDouble());
+    	            	break;
+    		 	case "c" : System.out.println("Enter accno");
+    	            oper.checkBalance(sc.nextInt());
+    	            	break;
+    		 	case "x" : return ;
+    		 	default : System.out.println("Account not found");
+    		 }
+    	 }
+    } 
+ 
+}
+------------------------------------------------------------------------------------------------------------------------------------
+
+package javapractice;
+
+public class Account {
+protected int accno;
+protected String custname;
+protected double balance;
+
+public Account(int accno, String custname, int balance){
+	this.accno = accno;
+	this.custname = custname;
+	this.balance = balance;
+}
+
+public int getAccno() {
+	return accno;
+}
+
+public void setAccno(int accno) {
+	this.accno = accno;
+}
+
+public String getCustname() {
+	return custname;
+}
+
+public void setCustname(String custname) {
+	this.custname = custname;
+}
+
+public double getBalance() {
+	return balance;
+}
+
+public void setBalance(double balance) {
+	this.balance = balance;
+}
+}
+---------------------------------------------------------------------------------------------------------------------------------------------
+package javapractice;
+
+public class AccountOperations {
+	double b;
+	boolean bool=false;
+	Account[] accounts = new Account[5];
+	public AccountOperations() {
+		accounts[0] = new Account(10011, "deloitte", 8000);
+		accounts[1] = new Account(10012,"Shravya", 10000);
+		accounts[2] = new Account(10013,"Boorugu",9000);
+		accounts[3] = new Account(10014,"Shreyas",7000);
+		accounts[4] = new Account(10015,"Sana",11000);
+	}
+	void deposit(int accno,double amount){
+	  int l = accounts.length;	
+    try{bool = false;
+	  for(int i=0;i<l;i++){
+    	  if(accno == accounts[i].getAccno() ){
+    		  bool = true;
+    		  b = accounts[i].getBalance();
+    		  b += amount;
+    		  accounts[i].setBalance(b);
+    		  System.out.println("current balance :"+accounts[i].getBalance());
+    	   }
+    	}
+      if (bool == false){
+    	  throw new AccountNotFoundException();
+      }
+    }
+    catch(AccountNotFoundException e){
+    	System.out.println(e.getMessage());
+    }
+	
+	}
+	
+	void withdraw(int accno,double amount){
+		int l = accounts.length;	
+		try{bool = false;
+		  for(int i=0;i<l;i++){
+	    	  if(accno == accounts[i].getAccno() ){
+	    		  bool = true;
+	    		  try{ if(amount < accounts[i].getBalance()){
+	    			  b = accounts[i].getBalance();
+	    			  b = b - amount;
+	    			  accounts[i].setBalance(b);
+	    			  System.out.println("current balance :"+accounts[i].getBalance());}
+	    		  else {
+	    			  throw new InsufficientBalanceException();}
+	    		  } catch (InsufficientBalanceException e){
+	    			  System.out.println(e.getMessage());
+	    		  }
+	    		  
+	    	   }
+	    	}
+		  if (bool == false){
+	    	  throw new AccountNotFoundException();
+	      }
+	    }
+	    catch(AccountNotFoundException e){
+	    	System.out.println(e.getMessage());
+	    }
+	}
+	void checkBalance(int accno){
+		int l = accounts.length;	
+	    try{bool = false;
+		  for(int i=0;i<l;i++){
+	    	  if(accno == accounts[i].getAccno() ){
+	    		  bool = true;
+	    		  System.out.println(accounts[i].getBalance());
+	    	  }
+		  }
+		  if (bool == false){
+	    	  throw new AccountNotFoundException();
+	      }
+	    }
+	    catch(AccountNotFoundException e){
+	    	System.out.println(e.getMessage());
+	    }
+	}
+	
+	public static void main(String[] args) {
+	
+
+	}
+
+}
+-----------------------------------------------------------------------------------------------------
+package javapractice;
+
+public class AccountNotFoundException extends Exception {
+          public AccountNotFoundException(){
+        	  super("Account doesn't exist");
+          }
+}
+-----------------------------------------------------------------------------------------------------
+package javapractice;
+
+public class InsufficientBalanceException extends Exception {
+	public InsufficientBalanceException(){
+		super("Insufficient Balance");
+	}
+
+}
+

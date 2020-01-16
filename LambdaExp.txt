@@ -1,0 +1,25 @@
+package javapractice;
+
+public interface Arithmetic {
+
+	int subtract(int x,int y);
+    default void output(){
+    	System.out.println("It is a default method");
+    }
+}
+------------------------------------------------------------------------------------------
+package javapractice;
+
+public class ArithmeticAppln {
+
+	public static void main(String[] args) {
+		Arithmetic arithmetic = (x,y)->{
+			System.out.println("subtract method");
+		    return x-y;
+		};		
+		
+		System.out.println(arithmetic.subtract(5,4));
+		arithmetic.output();
+	}
+
+}
